@@ -6,7 +6,8 @@ If decoding sees malformed input (e.g., missing count, overflow, or count with n
 
 #include <iostream>
 #include <string>
-#include <cstdlib> // Required for atoi
+#include <cstdlib>
+#include <chrono>
 std::string rle_encode(std::string in)
 {
     int count = 0;
@@ -56,9 +57,17 @@ std::string rle_decode(std::string in)
 int main()
 {
     std::string test = "";
+    auto start = std::chrono::high_resolution_clock::now();
     std::string res = rle_encode(test);
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> duration = end - start;
+    std::cout << "Time taken: " << duration.count() << " seconds" << std::endl;
     std::cout << res << std::endl;
+    start = std::chrono::high_resolution_clock::now();
     std::string res2 = rle_decode(res);
+    end = std::chrono::high_resolution_clock::now();
+    duration = end - start;
+    std::cout << "Time taken: " << duration.count() << " seconds" << std::endl;
     std::cout << res2 << std::endl;
 
     return 0;
