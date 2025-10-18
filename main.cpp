@@ -8,7 +8,9 @@ If decoding sees malformed input (e.g., missing count, overflow, or count with n
 #include <string>
 #include <cstdlib>
 #include <chrono>
-std::string rle_encode(std::string in)
+
+// use string_view since we are not mutating. My doing this we aren't making any copies.
+std::string rle_encode(std::string_view in)
 {
     int count = 0;
     char current = in[0];
@@ -33,7 +35,7 @@ std::string rle_encode(std::string in)
     return encoded;
 }
 
-std::string rle_decode(std::string in)
+std::string rle_decode(std::string_view in)
 {
     int i = 0;
     std::string decoded = "";
