@@ -12,10 +12,14 @@ If decoding sees malformed input (e.g., missing count, overflow, or count with n
 // use string_view since we are not mutating. My doing this we aren't making any copies.
 std::string rle_encode(std::string_view in)
 {
+    // if (in.empty())
+    // {
+    //     return {};
+    // }
     int count = 0;
     char current = in[0];
     std::string encoded = "";
-    int i = 0;
+    size_t i = 0;
 
     while (i <= in.size())
     {
@@ -37,7 +41,12 @@ std::string rle_encode(std::string_view in)
 
 std::string rle_decode(std::string_view in)
 {
-    int i = 0;
+    // if (in.empty())
+    // {
+    //     return {};
+    // }
+
+    size_t i = 0;
     std::string decoded = "";
     int num = 0;
     std::string c = "";
@@ -56,9 +65,10 @@ std::string rle_decode(std::string_view in)
     return decoded;
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-    std::string test = "";
+
+    std::string test(argv[1]);
     auto start = std::chrono::high_resolution_clock::now();
     std::string res = rle_encode(test);
     auto end = std::chrono::high_resolution_clock::now();
