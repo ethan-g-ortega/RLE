@@ -11,15 +11,19 @@ std::string rle_encode(std::string_view in)
     int count = 0;
     char current = in[0];
     std::string encoded = "";
+    // size_t is an unsigned int type. It is guaranteed to be large enough to hold the size of any object in memory
+    // It is platform dependent and will be at least as wide as a pointer on the given architecture
+    //(e.g., 32-bit on 32-bit systems, 64-bit on 64-bit systems).
     std::size_t i = 0;
 
     while (i <= in.size())
     {
+        // check if a number is input. return nothing if given
         if (std::isdigit(static_cast<unsigned char>(in[i])))
         {
             return "";
         }
-
+        // counter for number of current character
         if (in[i] == current)
         {
             count += 1;
