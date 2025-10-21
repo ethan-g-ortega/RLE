@@ -1,0 +1,39 @@
+# CMake build dirs (out-of-source builds)
+build/
+build-*/
+cmake-build-*/
+
+# CMake-generated files
+CMakeCache.txt
+CMakeFiles/
+CTestTestfile.cmake
+cmake_install.cmake
+Testing/
+Makefile
+install_manifest.txt
+
+# Compiled binaries & objects
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+*.pdb
+*.ilk
+
+# Tooling/IDE noise
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs & misc
+*.log
+*.tmp
+
+# Optional: usually ignore, unless your team wants it committed
+compile_commands.json
