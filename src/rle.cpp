@@ -2,6 +2,8 @@
 #include <cstdlib>
 #include "rle.h"
 #include <iostream>
+#include <limits>
+#include <cstddef>
 
 // use string_view since we are not mutating. My doing this we aren't making any copies.
 std::string rle_encode(std::string_view in)
@@ -9,7 +11,7 @@ std::string rle_encode(std::string_view in)
     int count = 0;
     char current = in[0];
     std::string encoded = "";
-    size_t i = 0;
+    std::size_t i = 0;
 
     while (i <= in.size())
     {
@@ -36,12 +38,12 @@ std::string rle_encode(std::string_view in)
 
 std::string rle_decode(std::string_view in)
 {
-    size_t i = 0;
-    const size_t n = in.size();
+    std::size_t i = 0;
+    const std::size_t n = in.size();
     std::string decoded;
 
     std::string digit;
-    size_t num = 0; // parsed count
+    std::size_t num = 0; // parsed count
     char c = '\0';
 
     while (i < n)
