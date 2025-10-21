@@ -27,10 +27,33 @@ TEST(RLE_RoundTrip, EncodeThenDecode)
     EXPECT_EQ(dec, original);
 }
 
-TEST(RLE_Decode, MalformedReturnsEmpty)
+TEST(RLE_Encode, CharsOnly)
 {
-    EXPECT_EQ(rle_decode("A"), "");                          // no count
-    EXPECT_EQ(rle_decode("0A"), "");                         // zero not allowed
-    EXPECT_EQ(rle_decode("12"), "");                         // count without a char
+    EXPECT_EQ(rle_encode("4"), "");
+    EXPECT_EQ(rle_encode("AA44BB"), "");
+}
+
+// TEST(RLE_Encode, )
+// {
+//     EXPECT_EQ(rle_encode("4"), "");
+// }
+
+TEST(RLE_Decode, NoCount)
+{
+    EXPECT_EQ(rle_decode("A"), ""); // no count
+}
+
+TEST(RLE_Decode, ZerosNotAllowed)
+{
+    EXPECT_EQ(rle_decode("0A"), ""); // zero not allowed
+}
+
+TEST(RLE_Decode, CountWithoutChar)
+{
+    EXPECT_EQ(rle_decode("12"), ""); // count without a char
+}
+
+TEST(RLE_Decode, OverFlowPath)
+{
     EXPECT_EQ(rle_decode("9999999999999999999999999A"), ""); // overflow path
 }
